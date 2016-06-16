@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Defining the fortuneService as a dependency -->
+	<bean id="fortuneService" class="com.luv2code.springdemo.service.impl.HappyFortuneService" />
+	
+	<bean id="trackCoach" class="com.luv2code.springdemo.service.impl.TrackCoach">
+		<!-- set up for constructor injection  -->
+		<constructor-arg ref="fortuneService" />
+	</bean>
+	
+	<bean id="baseballCoach" class="com.luv2code.springdemo.service.impl.BaseballCouch">
+		<constructor-arg ref="fortuneService" />
+	</bean>
+	
+	<bean id="cricketCoach" class="com.luv2code.springdemo.service.impl.CricketCoach">
+		
+		<!-- set up for setter injection   -->
+		<property name="fortuneService" ref="fortuneService"/>
+		
+		<!-- set up for injecting literals in setter injection -->
+		<property name="emailAddress" value="teammail@sunrisershyderabad.com" />
+		<property name="team" value="Sunrisers Hyderabad" />
+		
+	</bean>
+
+</beans>
