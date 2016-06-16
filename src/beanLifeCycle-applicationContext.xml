@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+						
+	<!-- Defining the fortuneService as a dependency -->
+	<bean id="fortuneService" class="com.luv2code.springdemo.service.impl.HappyFortuneService" />
+	
+	<!-- default scope of a spring bean is Singleton -->
+	<bean id="trackCoach" class="com.luv2code.springdemo.service.impl.TrackCoach"
+							init-method="trackCoachStartupMethod"
+							destroy-method="trackCoachCleanupMethod">
+		<!-- set up for constructor injection  -->
+		<constructor-arg ref="fortuneService" />
+	</bean>
+	
+	<bean id="baseballCoach" class="com.luv2code.springdemo.service.impl.BaseballCouch" scope="prototype">
+		<constructor-arg ref="fortuneService" />
+	</bean>
+
+</beans>
