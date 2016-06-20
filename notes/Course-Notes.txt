@@ -1,0 +1,66 @@
+Primary functions of a Spring Container are
+
+	1. Create and manage objects (Inversion of Control)
+	2. Inject object's dependencies (Dependency Injection)
+
+3 ways of configuring Spring Container
+	
+	1. XML Configuration File
+	2. Java Annotations
+	3. Java Source Code
+
+Spring Development Process
+
+	1. Configure your Spring Beans
+	2. Create a Spring Container
+	3. Retrieve your Spring Beans
+
+Development Process - Constructor Injection
+
+	1. Define the dependency interface and class
+	2. Create a constructor in your class for injections
+	3. Configure the dependency injection in Spring Configuration file
+
+Developer Process - Setter Injection
+
+	1. Create setter method(s) for injection
+	2. Configure the setter injection in Spring Configuration file
+
+Read values from a properties file
+
+	1. Create Properties File
+	2. Load Properties file in Spring Config file
+	3. Reference values from Properties file
+
+Bean Scopes:
+	- Scope refers to the lifecycle of a bean
+	- How long does the bean live?
+	- How many instances are created?
+	- How is the bean shared?
+
+Bean Lifecycle:
+	
+	1. Container started
+	2. Bean Instantiated
+	3. Dependencies Injected
+	4. Internal Spring Processing
+	5. Your Custom Init Method
+	6. Now, Bean is ready to use
+	7. Container is shutdown
+	8. Your Custom Destroy Method
+	9. Stop
+
+Hibernate Development Process
+
+	1. Add Hibernate Configuration file
+	2. Annotate Java Class
+	3. Develop Java code to perform database operations
+
+Hibernate Code through Java Process
+
+	1. Create Session Factory
+	2. Create Session from Session Factory
+	3. Create Object to be saved to database
+	4. Using session start a transaction
+	5. Save the object/Read the object
+	6. Commit the transaction
