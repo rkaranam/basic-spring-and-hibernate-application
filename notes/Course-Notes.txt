@@ -64,3 +64,12 @@ Hibernate Code through Java Process
 	4. Using session start a transaction
 	5. Save the object/Read the object
 	6. Commit the transaction
+	
+Querying Hibernate Objects
+
+	1. Create Session Factory
+	2. Create Session from Session Factory
+	3. Build a query
+	4. Execute it
+	5. Display the result
+	6. Commit the transaction
