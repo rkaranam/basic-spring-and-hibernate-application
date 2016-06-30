@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import com.luv2code.hibernate.demo.entity.Student;
 import com.luv2code.hibernate.util.HibernateUtil;
 
-public class QueryStudentsDemo {
+public class UpdateStudentsDemo {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
@@ -23,26 +23,22 @@ public class QueryStudentsDemo {
 		try {			
 			// start a transaction
 			session.beginTransaction();
-
-			// build query and execute: List out all the student records in db
-			List<Student> studentsList = session.createQuery("from Student").list();
-			displayStudents(studentsList);
 			
-			// build query and execute: List out all student records whose last_name is 'Stark'
-			List<Student> starkStudents = session.createQuery("from Student s where s.lastName = 'Stark'").list();
-			displayStudents(starkStudents);
+			// build query and execute: get student record with firstName as 'Jon'
+			List<Student> students = session.createQuery("from Student s where s.firstName = 'Jon'").list();
 			
-			// build query and execute: List out both Starks and Snows
-			List<Student> starksAndSnows = 
-					session.createQuery("from Student s where s.lastName = 'Stark'" 
-							+ "OR s.lastName='Snow'").list();
-			displayStudents(starksAndSnows);
+			Student studentRecord = students.get(0);
 			
-			// build query and execute: List records whose email id like '%@luv2code.com'
-			List<Student> likeMailStudents = session
-					.createQuery("from Student s where s.email LIKE '%@luv2code.com'").list();
-			displayStudents(likeMailStudents);
+			int studentId = studentRecord.getId();
 			
+			Student myStudent = session.get(Student.class, studentId);
+			
+			// update the record
+			myStudent.setLastName("Targeyreyan");
+			
+			// update email for all students
+			// session.createQuery("update Student set email = 'foo@gmail.com'").executeUpdate();
+						
 			// commit transaction
 			session.getTransaction().commit();
 			

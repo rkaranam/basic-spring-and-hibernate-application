@@ -73,3 +73,14 @@ Querying Hibernate Objects
 	4. Execute it
 	5. Display the result
 	6. Commit the transaction
+
+Hibernate CRUD Operations
+
+	1. Create Objects
+	2. Read Objects
+	3. Update Objects
+	4. Delete Objects	
+
+Things to implement:
+--------------------
+1. Implement In-Memory database implementation using H2 or HSQL in Hibernate

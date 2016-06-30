@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import com.luv2code.hibernate.demo.entity.Student;
 import com.luv2code.hibernate.util.HibernateUtil;
 
-public class QueryStudentsDemo {
+public class DeleteStudentsDemo {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
@@ -23,26 +23,30 @@ public class QueryStudentsDemo {
 		try {			
 			// start a transaction
 			session.beginTransaction();
-
-			// build query and execute: List out all the student records in db
-			List<Student> studentsList = session.createQuery("from Student").list();
-			displayStudents(studentsList);
 			
-			// build query and execute: List out all student records whose last_name is 'Stark'
-			List<Student> starkStudents = session.createQuery("from Student s where s.lastName = 'Stark'").list();
-			displayStudents(starkStudents);
+			List<Student> studentsBeforeDeletion = session.createQuery("from Student").list();
+			System.out.println("Students before deletion: ");
+			displayStudents(studentsBeforeDeletion);
 			
-			// build query and execute: List out both Starks and Snows
-			List<Student> starksAndSnows = 
-					session.createQuery("from Student s where s.lastName = 'Stark'" 
-							+ "OR s.lastName='Snow'").list();
-			displayStudents(starksAndSnows);
+			// two ways of deleting object in hibernate
+			// 1. Retrieve and Delete
+			// 2. Delete on the way
 			
-			// build query and execute: List records whose email id like '%@luv2code.com'
-			List<Student> likeMailStudents = session
-					.createQuery("from Student s where s.email LIKE '%@luv2code.com'").list();
-			displayStudents(likeMailStudents);
+			int studentId = 11;
 			
+			// first way
+			/*Student studentToDelete = session.get(Student.class, studentId);			
+			System.out.println("Retrieved record: " + studentToDelete);			
+			System.out.println("Deleting record.. " + studentToDelete.getFirstName());			
+			session.delete(studentToDelete);*/
+			
+			// second way
+			session.createQuery("delete from Student where id = " + studentId).executeUpdate();
+			
+			List<Student> studentsAfterDeletion = session.createQuery("from Student").list();
+			System.out.println("Students after deletion: ");
+			displayStudents(studentsAfterDeletion);
+						
 			// commit transaction
 			session.getTransaction().commit();
 			
